@@ -22,3 +22,10 @@ module "vpc" {
     vpc_cidr_block = "10.1.0.0/16"
     vpc_name = "base-infra-vpc"
 }
+
+module "subnet" {
+    source = "./modules/subnet"
+    vpc_id = module.vpc.vpc_id
+    subnet_cidr_block = "10.1.0.0/24"
+    subnet_name = "base-infra-ec2-subnet"
+}
