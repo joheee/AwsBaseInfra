@@ -29,10 +29,3 @@ module "ec2-subnet" {
     subnet_cidr_block = "10.1.0.0/24"
     subnet_name = "base-infra-ec2-subnet"
 }
-
-module "rds-subnet" {
-    source = "./modules/subnet"
-    vpc_id = module.vpc.vpc_id
-    subnet_cidr_block = "10.1.1.0/24"
-    subnet_name = "base-infra-rds-subnet"
-}
