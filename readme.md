@@ -4,4 +4,7 @@ conflict aws cli profile
 
 ## Progress
 05/05/2026
-- create simple vpc module
+- vpc module
+- subnet module
+- ec2 subnet
+- rds subnet
