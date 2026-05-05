@@ -17,6 +17,8 @@ provider "aws" {
     region = "ap-southeast-1"
 }
 
-resource "aws_vpc" "main" {
-    cidr_block = "10.0.0.0/16"
+module "vpc" {
+    source = "./modules/vpc"
+    vpc_cidr_block = "10.1.0.0/16"
+    vpc_name = "base-infra-vpc"
 }
