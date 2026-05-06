@@ -36,3 +36,11 @@ module "ec2-nic" {
     private_ip = "10.1.0.10"
     nic_name = "base-infra-nic"
 }
+
+module "ec2-instance" {
+    source = "./modules/ec2"
+    ami = "ami-02dd44faa40720bb8"
+    instance_type = "t2.micro"
+    nic_id = module.ec2-nic.nic_id
+    ec2_name = "base-infra-ec2"
+}
