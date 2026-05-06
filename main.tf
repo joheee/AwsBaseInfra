@@ -29,3 +29,10 @@ module "ec2-subnet" {
     subnet_cidr_block = "10.1.0.0/24"
     subnet_name = "base-infra-ec2-subnet"
 }
+
+module "ec2-nic" {
+    source = "./modules/nic"
+    subnet_id = module.ec2-subnet.subnet_id
+    private_ip = "10.1.0.10"
+    nic_name = "base-infra-nic"
+}

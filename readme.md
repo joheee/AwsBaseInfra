@@ -9,3 +9,4 @@ conflict aws cli profile
 
 ### 06/05/2026
 - ec2 subnet
+- nic module
