@@ -8,7 +8,7 @@ terraform {
     backend "s3" {
         bucket = "upwork-terraform"
         key = "aws-base-infra/terraform.tfstate"
-        region = var.region
+        region = "ap-southeast-1"
         use_lockfile = true
     }
 }
