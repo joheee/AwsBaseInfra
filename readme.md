@@ -12,3 +12,7 @@
 - ec2 subnet
 - nic module
 - ec2 module
+
+### 12/05/2026
+- iam role module
+- eks module
