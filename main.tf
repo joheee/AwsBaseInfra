@@ -8,13 +8,13 @@ terraform {
     backend "s3" {
         bucket = "upwork-terraform"
         key = "aws-base-infra/terraform.tfstate"
-        region = "ap-southeast-1"
+        region = var.region
         use_lockfile = true
     }
 }
 
 provider "aws" {
-    region = "ap-southeast-1"
+    region = var.region
 }
 
 module "vpc" {
