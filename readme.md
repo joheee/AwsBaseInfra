@@ -2,31 +2,16 @@
 
 Modular **Terraform** layout for core **AWS** networking.
 
+# Design Architecture Diagram
+
+![The Project Architecture](images/architecture-diagram.png)
+
 ## What this demonstrates
 
 - **IaC** with reusable modules and remote state (S3 backend and lockfile).
 - **Networking**: VPC, multi-AZ subnets, static private IP via ENI.
 - **Compute**: EC2 attached to a pre-created network interface.
 - **Kubernetes**: EKS cluster with a dedicated IAM role and `authentication_mode = "API"`.
-
-## Architecture (high level)
-
-```mermaid
-flowchart TB
-  subgraph vpc[VPC 10.1.0.0/16]
-    sn_ec2[Subnet EC2 10.1.0.0/24]
-    sn_a[Subnet A 10.1.1.0/24]
-    sn_b[Subnet B 10.1.2.0/24]
-    nic[ENI 10.1.0.10]
-    ec2[EC2]
-    eks[EKS cluster]
-  end
-  iam[IAM role EKS]
-  sn_ec2 --> nic --> ec2
-  sn_a --> eks
-  sn_b --> eks
-  iam --> eks
-```
 
 ## Tech stack
 
