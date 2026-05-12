@@ -1,11 +1,11 @@
 # AWS Base Infrastructure (Terraform)
 
-Modular **Terraform** layout for core **AWS** networking and compute: VPC, subnets, EC2 with a dedicated ENI, IAM for EKS, and an **EKS** cluster with API based authentication.
+Modular **Terraform** layout for core **AWS** networking.
 
 ## What this demonstrates
 
-- **IaC** with reusable modules and remote state (S3 backend, lockfile).
-- **Networking**: VPC, multi-AZ subnets (workload + cluster), static private IP via ENI.
+- **IaC** with reusable modules and remote state (S3 backend and lockfile).
+- **Networking**: VPC, multi-AZ subnets, static private IP via ENI.
 - **Compute**: EC2 attached to a pre-created network interface.
 - **Kubernetes**: EKS cluster with a dedicated IAM role and `authentication_mode = "API"`.
 
@@ -15,10 +15,10 @@ Modular **Terraform** layout for core **AWS** networking and compute: VPC, subne
 flowchart TB
   subgraph vpc[VPC 10.1.0.0/16]
     sn_ec2[Subnet EC2 10.1.0.0/24]
-    sn_a[Cluster subnet A 10.1.1.0/24]
-    sn_b[Cluster subnet B 10.1.2.0/24]
+    sn_a[Subnet A 10.1.1.0/24]
+    sn_b[Subnet B 10.1.2.0/24]
     nic[ENI 10.1.0.10]
-    ec2[EC2 t2.micro]
+    ec2[EC2]
     eks[EKS cluster]
   end
   iam[IAM role EKS]
@@ -32,7 +32,7 @@ flowchart TB
 
 | Area          | Choice                                  |
 | ------------- | --------------------------------------- |
-| IaC           | Terraform, AWS provider `~> 6`          |
+| IaC           | Terraform, AWS provider                 |
 | State         | S3 backend + lockfile                   |
 | Region        | Configurable (default `ap-southeast-1`) |
 | Orchestration | Amazon EKS                              |
@@ -54,7 +54,7 @@ flowchart TB
 
 - [Terraform](https://developer.hashicorp.com/terraform/install) **1.x** (compatible with your lockfile).
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) configured with credentials that can create the resources above.
-- An **S3 bucket** (and appropriate IAM) for the backend defined in `main.tf`; update the `backend "s3"` block if you use your own bucket/key/region.
+- An **S3 bucket** (and appropriate IAM) for the backend defined in `main.tf`.
 
 ## Implementation timeline (portfolio build log)
 
@@ -63,6 +63,7 @@ flowchart TB
 | 2026-05-05 | VPC module, subnet module                 |
 | 2026-05-06 | EC2 subnet wiring, NIC module, EC2 module |
 | 2026-05-12 | IAM role module, EKS module               |
+| 2026-05-13 | update readme.md                          |
 
 ## Troubleshooting (local dev)
 
